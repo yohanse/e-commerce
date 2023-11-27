@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { AiOutlineHeart, AiOutlineEye, AiFillStar } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled.div`
   display: flex;
@@ -56,7 +57,7 @@ const Price = styled.p`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0em;
-  color: #DB4444;
+  color: #db4444;
   margin-right: 1em;
 `;
 
@@ -68,14 +69,13 @@ const PricePrev = styled.p`
   line-height: 24px;
   letter-spacing: 0em;
   position: relative;
-  &::before{
+  &::before {
     position: absolute;
     background-color: grey;
     content: "";
     height: 2px;
     width: 100%;
     top: 50%;
-
   }
 `;
 
@@ -91,8 +91,13 @@ interface Props {
 }
 
 export const TodayMaterialCard = () => {
+  const navigation = useNavigate();
   return (
-    <Card>
+    <Card
+      onClick={() => {
+        navigation("/detail");
+      }}
+    >
       <ImageCard>
         <CostCard>-40%</CostCard>
         <CardIcon>

@@ -5,7 +5,7 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,46 +15,51 @@ const Wrapper = styled.div`
 `;
 
 const InputWrapper = styled.div`
-    display: flex;
-    border: 1px grey solid;
+  display: flex;
+  background: #f5f5f5;
 `;
 
 const Input = styled.input`
-    border: none;
-    &:focus{
-        outline: none;
-    }
+  border: none;
+  background: #f5f5f5;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 2px 5px;
+  width: 14em;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const WishIcon = styled(AiOutlineHeart)`
-    cursor: pointer;
+  cursor: pointer;
 `;
-
 
 const CartIcon = styled(AiOutlineShoppingCart)`
-    cursor: pointer;
+  cursor: pointer;
 `;
-
-
 
 export const NavBarIcon = () => {
   const navigation = useNavigate();
   return (
     <Wrapper>
       <InputWrapper>
-        <Input type="search"></Input>
+        <Input type="search" placeholder="what are you looking for?"></Input>
         <AiOutlineSearch></AiOutlineSearch>
       </InputWrapper>
-      <WishIcon onClick = {
-        () => {
-          navigation('/wishList');
-        }
-      }/>
-      <CartIcon onClick = {
-        () => {
-          navigation('/cart');
-        }
-      }/>
+      <WishIcon
+        onClick={() => {
+          navigation("/wishList");
+        }}
+      />
+      <CartIcon
+        onClick={() => {
+          navigation("/cart");
+        }}
+      />
     </Wrapper>
   );
 };

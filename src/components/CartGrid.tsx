@@ -1,62 +1,89 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import { InputIncrease } from "./InputIncrease";
 
-const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    place-items: center;
-    row-gap: 3em;
+const Table = styled.table`
+    border-collapse: separate;
+    border-spacing: 0 30px;
+`;
+
+const Tr = styled.tr`
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+`;
+
+const Td = styled.td`
+    padding: 10px;
 `;
 
 const IconText = styled.div`
-    display: flex;
-    gap: 2px;
+  display: flex;
+  align-items: center;
 `;
 
 const Icon = styled.div`
-    height: 3em;
-    width: 3em;
-    background-color: black;
+  height: 3em;
+  width: 3em;
+  background-image: url("https://t3.ftcdn.net/jpg/05/70/78/52/360_F_570785259_PbB3QtX7SmyxKMMmScfWGBGU4DvuUxeq.jpg");
+  
+  background-color: red;
 `;
 
 const P = styled.div``;
 
 const RangeInput = styled.input``;
 
-
-
 export const CartGrid = () => {
   return (
-    <Grid>
-        <P>Product</P>
-        <P>Price</P>
-        <P>Quantity</P>
-        <P>Subtotal</P>
+    <Table>
+      <Tr>
+        <Td>
+          <P>Product</P>
+        </Td>
+        <Td>
+          <P>Price</P>
+        </Td>
+        <Td>
+          <P>Quantity</P>
+        </Td>
+        <Td>
+          <P>Subtotal</P>
+        </Td>
+      </Tr>
 
-        <IconText>
-            <Icon/>
+      <Tr>
+        <Td>
+          <IconText>
+            <Icon />
             <P>LCD monitor</P>
-        </IconText>
-        <P>$650</P>
-        <InputIncrease/>
-        <P>$650</P>
-
-        <IconText>
-            <Icon/>
+          </IconText>
+        </Td>
+        <Td>
+          <P>$650</P>
+        </Td>
+        <Td>
+          <InputIncrease />
+        </Td>
+        <Td>
+          <P>$650</P>
+        </Td>
+      </Tr>
+      <Tr>
+        <Td>
+          <IconText>
+            <Icon />
             <P>LCD monitor</P>
-        </IconText>
-        <P>$650</P>
-        <InputIncrease/>
-        <P>$650</P>
-
-        <IconText>
-            <Icon/>
-            <P>LCD monitor</P>
-        </IconText>
-        <P>$650</P>
-        <InputIncrease/>
-        <P>$650</P>
-
-    </Grid>
-  )
-}
+          </IconText>
+        </Td>
+        <Td>
+          <P>$650</P>
+        </Td>
+        <Td>
+          <InputIncrease />
+        </Td>
+        <Td>
+          <P>$650</P>
+        </Td>
+      </Tr>
+    </Table>
+  );
+};

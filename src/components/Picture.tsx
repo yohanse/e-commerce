@@ -6,7 +6,6 @@ import { PictureMain } from "./PictureMain";
 const Wrapper = styled.div`
     display: flex;
     align-items: start;
-    flex-wrap: wrap;
 `;
 
 export const Picture = () => {

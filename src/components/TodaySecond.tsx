@@ -4,7 +4,6 @@ import { SubTitle } from "./SubTitle";
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 10em;
   align-items: center;
   flex-wrap: wrap;
 `;
@@ -14,10 +13,8 @@ const DateWrapper = styled.div`
   align-items: end;
 `;
 
-
-
 const Colon = styled.p`
-    font-family: Inter;
+  font-family: Inter;
   font-size: 36px;
   font-weight: 600;
   line-height: 48px;
@@ -27,10 +24,14 @@ const Colon = styled.p`
   color: red;
 `;
 
+const MarginRight = styled.div`
+  margin-right: 10em;
+`;
+
 export const TodaySecond = () => {
   return (
     <Wrapper>
-      <SubTitle subTitle={"Flash Sales"}></SubTitle>
+      <MarginRight><SubTitle subTitle={"Flash Sales"}></SubTitle></MarginRight>
       <DateWrapper>
         <Date repr={"Day"} value={"03"}></Date>
         <Colon>:</Colon>

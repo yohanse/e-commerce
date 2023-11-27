@@ -4,7 +4,8 @@ const Grid = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid grey;
-  padding: 0 6px 0 6px;
+  width: 3em;
+  justify-content: center;
 `;
 
 const P = styled.p``;

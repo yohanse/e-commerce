@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import { styled } from "styled-components";
@@ -15,20 +16,34 @@ const ImageCard = styled.div`
   position: relative;
   background-image: url("https://i.pinimg.com/564x/e2/4d/e0/e24de059cf8dd1e459d6bc4587698395.jpg");
   border-radius: 1em;
+  overflow: hidden;
 `;
 
-const AddCart = styled.button`
+const AddCart = styled.button<{$hover: boolean}>`
   position: absolute;
   background-color: black;
   color: white;
   width: 100%;
+  top: ${(props) => props.$hover? "100%": "80%"};
   padding: 0.5em 0 0.5em 0;
-  bottom: 0;
+  animation: ${(props) => !props.$hover? "top-to-bottom 1s ease-in forwards": "bottom-to-top 1s ease-in forwards"};
   text-align: center;
   outline: none;
-
   border: none;
   border-radius: 1em;
+  
+
+  @keyframes bottom-to-top{
+    100%{
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes top-to-bottom{
+    100%{
+      transform: translateY(100%);
+    }
+  }
 `;
 
 const Name = styled.p`
@@ -74,7 +89,7 @@ const PricePrev = styled.p`
 `;
 
 const RemoveIcon = styled(BsTrash)`
-size: 18;
+  size: 18;
   position: absolute;
   border-radius: 50%;
   padding: 0.3em;
@@ -84,11 +99,16 @@ size: 18;
   right: 5%;
 `;
 export const WishListCard = () => {
+  const [hover, setHover] = useState(false);
   return (
-    <Wrapper>
+    <Wrapper
+      onMouseEnter={() => {setHover(true)
+      console.log("yohsnse")}}
+      onMouseLeave={() => setHover(false)}
+    >
       <ImageCard>
         <RemoveIcon></RemoveIcon>
-        <AddCart>
+        <AddCart $hover={hover}>
           <AiOutlineShoppingCart size={15} /> Add to cart
         </AddCart>
       </ImageCard>

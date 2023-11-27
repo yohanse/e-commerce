@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { CartGrid } from "./CartGrid";
 import { Footer } from "./Footer";
 import Header from "./Header";
 import { NavBar } from "./NavBar";
-import CartCheckout from "./CartCheckout";
-import CartCupon from "./CartCupon";
+import ProductDetailPicture from "./ProductDetailPicture";
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,22 +27,22 @@ const P = styled.p`
 
 const Strong = styled.strong``;
 
-export const CartPage = () => {
+
+
+const ProductDetailPage = () => {
   return (
     <HomeWrapper>
       <Header></Header>
       <NavBar></NavBar>
       <Wrapper>
         <P>
-          Home / <Strong>Cart</Strong>
+          Account / Gaming /<Strong> Cart</Strong>
         </P>
-        <CartGrid></CartGrid>
-        <CartPrice>
-          <CartCupon></CartCupon>
-          <CartCheckout></CartCheckout>
-        </CartPrice>
+        <ProductDetailPicture></ProductDetailPicture>
       </Wrapper>
       <Footer></Footer>
     </HomeWrapper>
-  );
-};
+  )
+}
+
+export default ProductDetailPage

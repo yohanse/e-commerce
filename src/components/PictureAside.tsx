@@ -23,7 +23,7 @@ const P = styled.p`
 `;
 
 export const PictureAside = () => {
-  const notes = [
+  const notes: string[] = [
     "Woman's Fashion",
     "Men's Fashion",
     "Electronics",
