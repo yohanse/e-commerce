@@ -7,7 +7,7 @@ const Ul = styled.ul`
   padding-inline-start: 0;
   list-style: none;
   display: flex;
-  gap: 2em;
+  gap: 3em;
   @media (max-width: 600px) {
     flex-direction: column;
     gap: 1em;
@@ -52,8 +52,20 @@ export const NavBarMiddle = () => {
         Home
       </Li>
       <Li>Contact</Li>
-      <Li>About</Li>
-      <Li>Sign Up</Li>
+      <Li
+        onClick={() => {
+          navigation("/about");
+        }}
+      >
+        About
+      </Li>
+      <Li
+        onClick={() => {
+          navigation("/signup");
+        }}
+      >
+        Sign Up
+      </Li>
     </Ul>
   );
 };

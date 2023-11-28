@@ -11,17 +11,18 @@ const Wrapper = styled.div`
 const DateWrapper = styled.div`
   display: flex;
   align-items: end;
+  gap: 3px;
 `;
 
 const Colon = styled.p`
   font-family: Inter;
   font-size: 36px;
   font-weight: 600;
-  line-height: 48px;
   letter-spacing: 0.04em;
   margin-block-start: 0;
   margin-block-end: 0;
-  color: red;
+  color: #E07575;
+  
 `;
 
 const MarginRight = styled.div`

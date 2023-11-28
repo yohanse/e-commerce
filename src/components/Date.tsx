@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Div = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 0.5em;
+  align-items: center;
 `;
 
 const Sp = styled.p`

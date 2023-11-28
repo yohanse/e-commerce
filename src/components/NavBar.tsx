@@ -8,7 +8,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { LogoFake } from "./LogoFake";
 
 const Nav = styled.nav`
-  padding: 0 1em;
+  // padding: 0 1em;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -32,7 +32,7 @@ const Div = styled.div<{ $opened: boolean }>`
   @media (max-width: 669px) {
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     gap: 1em;
-    padding: 1em;
+    padding: 1em 0;
     border-top: 1px grey solid;
     flex-direction: column-reverse;
     position: absolute;

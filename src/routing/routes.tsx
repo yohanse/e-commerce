@@ -3,6 +3,9 @@ import HomePage from "../components/HomePage";
 import WishListPage from "../components/WishListPage";
 import { CartPage } from "../components/CartPage";
 import ProductDetailPage from "../components/ProductDetailPage";
+import SignUpPage from "../components/SignUpPage";
+import LoginPage from "../components/LoginPage";
+import AboutPage from "../components/AboutPage";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +22,20 @@ const router = createBrowserRouter([
   },
   {
     path: "/detail",
-    element: <ProductDetailPage></ProductDetailPage>
+    element: <ProductDetailPage></ProductDetailPage>,
   },
+  {
+    path: "/signup",
+    element: <SignUpPage></SignUpPage>,
+  },
+  {
+    path: "/login",
+    element: <LoginPage></LoginPage>,
+  },
+  {
+    path: "/about",
+    element: <AboutPage></AboutPage>,
+  }
 ]);
 
 export default router;

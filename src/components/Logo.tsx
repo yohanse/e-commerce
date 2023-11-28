@@ -7,7 +7,6 @@ const P = styled.p`
     font-size: 1.6em;
     margin-block-start: 0;
     margin-block-end: 0;
-    
     @media (min-width: 669px){
       display: none;
     }

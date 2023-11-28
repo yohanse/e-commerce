@@ -1,8 +1,17 @@
 import { styled } from "styled-components";
 
+const Wrapper = styled.div`
+  display: flex;
+  gap: 6px;
+`;
+
+const Bar = styled.div`
+  width: 1em;
+  background-color: #db4444;
+  border-radius: 4px;
+`;
 const P = styled.p`
   color: #db4444;
-  border-left: #db4444 solid 6px;
   padding: 4px;
   margin-block-start: 0;
   margin-block-end: 0;
@@ -13,5 +22,10 @@ interface Props {
 }
 
 export const Title = ({ title }: Props) => {
-  return <P>{title}</P>;
+  return (
+    <Wrapper>
+      <Bar></Bar>
+      <P>{title}</P>
+    </Wrapper>
+  );
 };
