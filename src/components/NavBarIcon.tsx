@@ -74,6 +74,7 @@ const UserMenu = styled.div<{ $account: boolean }>`
   border-radius: 6px;
   padding: 15px 10px;
   gap: 8px;
+  z-index: 2;
 `;
 
 export const NavBarIcon = () => {
