@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import ProductDetailNote from "./ProductDetailNote";
+import { Product } from "../store/features/product-slice";
 
 const Wrapper = styled.div`
   display: grid;
@@ -58,7 +59,10 @@ const Picture = styled.div<{ $image: string }>`
   background-image: url(${(props) => props.$image});
 `;
 
-const ProductDetailPicture = () => {
+interface Props {
+  product: Product,
+}
+const ProductDetailPicture = ({ product }: Props) => {
   return (
     <Wrapper>
       <Picture $image="https://i.pinimg.com/564x/e2/4d/e0/e24de059cf8dd1e459d6bc4587698395.jpg"></Picture>
@@ -66,7 +70,7 @@ const ProductDetailPicture = () => {
       <Picture $image="https://i.pinimg.com/564x/e2/4d/e0/e24de059cf8dd1e459d6bc4587698395.jpg"></Picture>
       <Picture $image="https://i.pinimg.com/564x/e2/4d/e0/e24de059cf8dd1e459d6bc4587698395.jpg"></Picture>
       <Picture $image="https://i.pinimg.com/564x/e2/4d/e0/e24de059cf8dd1e459d6bc4587698395.jpg"></Picture>
-      <ProductDetailNote></ProductDetailNote>
+      <ProductDetailNote product={product}></ProductDetailNote>
     </Wrapper>
   );
 };

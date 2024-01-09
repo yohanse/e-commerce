@@ -4,6 +4,9 @@ import { BiJoystickAlt } from "react-icons/bi";
 import { CiHeadphones } from "react-icons/ci";
 import style from "./catagorie.module.css";
 import { IconType } from "react-icons";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { useEffect } from "react";
+import { getCatagory } from "../store/features/catagory-slice";
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,46 +25,21 @@ const P = styled.p`
 `;
 
 export const CatagorieMaterial = () => {
-  const Icons: [IconType, String][] = [
-    [AiOutlineCamera, "Camera"],
-    [BiJoystickAlt, "Gaming"],
-    [CiHeadphones, "HeadPhones"],
-  ];
+  const dispatch = useAppDispatch();
+  const catagoryState = useAppSelector((state) => state.catagory);
+  const Icons: IconType[] = [AiOutlineCamera, BiJoystickAlt, CiHeadphones];
+
+  useEffect(() => {
+    dispatch(getCatagory())
+  }, [])
   return (
     <Wrapper>
-      {Icons.map((icon, index) => {
-        const [Icon, name] = icon;
+      {catagoryState.catagory.map((cat, index) => {
+        const Icon = Icons[index % 3];
         return (
-          <div key={index} className={style["icon"]}>
+          <div key={cat.id} className={style["icon"]}>
             <Icon size={120} />
-            <P>{name}</P>
-          </div>
-        );
-      })}
-      {Icons.map((icon, index) => {
-        const [Icon, name] = icon;
-        return (
-          <div key={index} className={style["icon"]}>
-            <Icon size={120} />
-            <P>{name}</P>
-          </div>
-        );
-      })}
-      {Icons.map((icon, index) => {
-        const [Icon, name] = icon;
-        return (
-          <div key={index} className={style["icon"]}>
-            <Icon size={120} />
-            <P>{name}</P>
-          </div>
-        );
-      })}
-      {Icons.map((icon, index) => {
-        const [Icon, name] = icon;
-        return (
-          <div key={index} className={style["icon"]}>
-            <Icon size={120} />
-            <P>{name}</P>
+            <P>{cat.title}</P>
           </div>
         );
       })}

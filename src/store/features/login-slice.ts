@@ -9,33 +9,30 @@ interface PostData {
 
 
 interface LoginData {
-    access: string | null;
-    refresh: string | null;
+    access: string;
+    refresh: string;
+}
+
+interface UserState {
+    auth: LoginData | null;
     status: string,
     error: string | null,
 }
 
-interface UserState {
-    auth: LoginData;
-}
-
 
 const initialState: UserState = {
-    auth: {
-        access: null,
-        refresh: null,
-        status: "idle",
-        error: null,
-    }
+    auth: null,
+    status: "idle",
+    error: null,
 }
 
 
 export const userLogin = createAsyncThunk("user/login", async (postData: PostData) => {
     try {
         const response = await apiClient.post("/auth/jwt/create", postData);
+
         return response.data;
     } catch (error) {
-        // Handle errors here
         throw error;
     }
 });
@@ -45,7 +42,11 @@ export const loginSlice = createSlice({
     initialState,
     reducers: {
         logout: (state) => {
-            state.auth = { ...initialState.auth }
+            state.auth = null
+            state.error = null
+            state.status = "idle"
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
         },
     },
 
@@ -53,13 +54,21 @@ export const loginSlice = createSlice({
         builder
             .addCase(userLogin.fulfilled, (state, action) => {
                 //data has been returned by AsyncThunk / fetch
-                state.auth = { ...action.payload.auth, status: "fulfilled", error: null }
+                state.auth = { ...action.payload }
+                state.error = null
+                state.status = "fulfilled"
+                if (state.auth?.access) { localStorage.setItem("accessToken", state.auth?.access); }
+                if (state.auth?.refresh) { localStorage.setItem("refreshToken", state.auth?.refresh); }
             })
             .addCase(userLogin.pending, (state) => {
-                state.auth = { ...state.auth, status: "pending", error: null }
+                state.auth = null
+                state.error = null
+                state.status = "pending"
             })
             .addCase(userLogin.rejected, (state, action) => {
-                state.auth = { ...state.auth, status: "rejected", error: action.error.message ? action.error.message : null }
+                state.auth = null
+                state.error = action.error.message ? action.error.message : null
+                state.status = "fulfilled"
             });
     },
 });

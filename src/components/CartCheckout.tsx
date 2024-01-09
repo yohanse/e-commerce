@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useAppSelector } from "../store/store";
 
 const Wrapper = styled.div`
   padding: 2em;
@@ -52,12 +53,13 @@ const Title = styled.p`
 `;
 
 const CartCheckout = () => {
+  const total = useAppSelector((state) => state.cart.cart.total_price)
   return (
     <Wrapper>
       <Title>Cart Total</Title>
       <Row1>
         <P>Subtotal:</P>
-        <P>$1750</P>
+        <P>${total}</P>
       </Row1>
       <Hr></Hr>
       <Row1>
@@ -67,7 +69,7 @@ const CartCheckout = () => {
       <Hr></Hr>
       <Row1>
         <P>Total:</P>
-        <P>$1750</P>
+        <P>${total}</P>
       </Row1>
       <Button>Procees to check out</Button>
     </Wrapper>

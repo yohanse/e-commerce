@@ -12,8 +12,11 @@ import { CiStar } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconWithNote from "./IconWithNote";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { getUser } from "../store/features/user-slice";
+import { logout } from "../store/features/login-slice";
 
 const Wrapper = styled.div`
   display: flex;
@@ -80,6 +83,13 @@ const UserMenu = styled.div<{ $account: boolean }>`
 export const NavBarIcon = () => {
   const navigation = useNavigate();
   const [account, setAccount] = useState(false);
+  const dispatch = useAppDispatch();
+  const userState = useAppSelector((state) => state.user);
+  
+  console.log(userState);
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
   return (
     <Wrapper>
       <InputWrapper>
@@ -109,14 +119,28 @@ export const NavBarIcon = () => {
         <IconWithNote
           note="Manage My Account"
           Icon={IoPersonOutline}
+          onClick={() => console.log("fuck off")}
         ></IconWithNote>
-        <IconWithNote note="My Order" Icon={LuShoppingBag}></IconWithNote>
+        <IconWithNote
+          note="My Order"
+          Icon={LuShoppingBag}
+          onClick={() => console.log("fuck off")}
+        ></IconWithNote>
         <IconWithNote
           note="My Cancellations"
           Icon={MdOutlineCancel}
+          onClick={() => console.log("fuck off")}
         ></IconWithNote>
-        <IconWithNote note="My Reviews" Icon={CiStar}></IconWithNote>
-        <IconWithNote note="Logout" Icon={CiLogout}></IconWithNote>
+        <IconWithNote
+          note="My Reviews"
+          Icon={CiStar}
+          onClick={() => console.log("fuck off")}
+        ></IconWithNote>
+        <IconWithNote
+          note="Logout"
+          Icon={CiLogout}
+          onClick={() => dispatch(logout())}
+        ></IconWithNote>
       </UserMenu>
     </Wrapper>
   );

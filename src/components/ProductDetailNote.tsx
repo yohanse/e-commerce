@@ -1,5 +1,9 @@
 import { AiFillStar, AiOutlineHeart } from "react-icons/ai";
 import { styled } from "styled-components";
+import { Product } from "../store/features/product-slice";
+import { useAppDispatch } from "../store/store";
+import { postCartItem } from "../store/features/cart-slice";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -208,10 +212,16 @@ const Love = styled(AiOutlineHeart)<{ $love: boolean }>`
   border-radius: 4px;
 `;
 
-const ProductDetailNote = () => {
+interface Props {
+  product: Product
+}
+
+const ProductDetailNote = ({ product }: Props) => {
+  const [ quantity, setQuantity ] = useState(1);
+  const dispatch = useAppDispatch()
   return (
     <Wrapper>
-      <Title>Havic HV G-92 Gamepad</Title>
+      <Title>{product.title}</Title>
       <HFlex1>
         <StarWrapper>
           <AiFillStar size={18} color={"#FFD700"} />
@@ -223,11 +233,9 @@ const ProductDetailNote = () => {
         <Parnt>(150 Reviews)</Parnt>
         <Pgreen>In Stock</Pgreen>
       </HFlex1>
-      <Price>$192.00</Price>
+      <Price>${product.unit_price}</Price>
       <Note>
-        PlayStation 5 Controller Skin High quality vinyl with air channel
-        adhesive for easy bubble free install & mess free removal Pressure
-        sensitive.
+        {product.description}
       </Note>
       <Hr></Hr>
       <HFlex1>
@@ -247,11 +255,13 @@ const ProductDetailNote = () => {
       </HFlex1>
       <HFlex2>
         <HFlex3>
-          <P1>-</P1>
-          <P2>2</P2>
-          <P3>+</P3>
+          <P1 onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</P1>
+          <P2>{quantity}</P2>
+          <P3 onClick={() => setQuantity(quantity + 1)}>+</P3>
         </HFlex3>
-        <Button>Add to Cart</Button>
+        <Button onClick={() => {
+          dispatch(postCartItem({product_id: product.id, quantity: quantity}))
+        }}>Add to Cart</Button>
         <Love size={27} $love={true}></Love>
       </HFlex2>
     </Wrapper>

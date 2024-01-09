@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { AiOutlineHeart, AiOutlineEye, AiFillStar } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import { Product } from "../store/features/product-slice";
 
 const Card = styled.div`
   display: flex;
@@ -56,7 +58,7 @@ const Price = styled.p`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0em;
-  color: #DB4444;
+  color: #db4444;
   margin-right: 1em;
 `;
 
@@ -68,14 +70,13 @@ const PricePrev = styled.p`
   line-height: 24px;
   letter-spacing: 0em;
   position: relative;
-  &::before{
+  &::before {
     position: absolute;
     background-color: grey;
     content: "";
     height: 2px;
     width: 100%;
     top: 50%;
-
   }
 `;
 
@@ -84,24 +85,28 @@ const StarWrapper = styled.div`
 `;
 
 interface Props {
-  percent: number;
-  name: String;
-  previousPrice: number;
+  product: Product,
 }
 
-export const ThisMonthMaterialCard = () => {
+export const ProductCard = ({ product } : Props) => {
+  const navigation = useNavigate();
   return (
-    <Card>
+    <Card
+      onClick={() => {
+        navigation(`/detail/${product.title}`, { state: {product}})
+      }}
+    >
       <ImageCard>
+        <CostCard>-40%</CostCard>
         <CardIcon>
           <AiOutlineHeart size={25} color={"white"} />
           <AiOutlineEye size={25} color={"white"} />
         </CardIcon>
       </ImageCard>
-      <Name>Iphone mobile</Name>
+      <Name>{product.title}</Name>
       <PriceWrapper>
-        <Price>$460</Price>
-        <PricePrev>$590</PricePrev>
+        <Price>${product.unit_price}</Price>
+        <PricePrev>${product.unit_price}</PricePrev>
       </PriceWrapper>
       <StarWrapper>
         <AiFillStar size={25} color={"#FFD700"} />

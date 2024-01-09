@@ -15,10 +15,15 @@ const P2 = styled.div`
   flex-direction: column;
 `;
 
-export const InputIncrease = () => {
+interface Props{
+  qauntity: number;
+}
+
+
+export const InputIncrease = ({ qauntity }: Props) => {
   return (
     <Grid>
-      <P>01</P>
+      <P>{qauntity}</P>
       <P2>
         <P>&gt;</P>
         <P>&lt;</P>

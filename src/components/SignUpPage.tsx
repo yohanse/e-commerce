@@ -4,6 +4,13 @@ import { Footer } from "./Footer";
 import { NavBar } from "./NavBar";
 import { IoLogoGoogle } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userSignup } from "../store/features/sign-up";
+import Dots from "./Dots";
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -19,7 +26,7 @@ const Image = styled.div`
   flex-grow: 1;
   background-size: cover;
   background-image: url("https://i.pinimg.com/564x/e2/4d/e0/e24de059cf8dd1e459d6bc4587698395.jpg");
-  @media (max-width: 650px){
+  @media (max-width: 650px) {
     display: none;
   }
 `;
@@ -39,7 +46,7 @@ const TitleWrapper = styled.div`
   gap: 0.8em;
 `;
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.8em;
@@ -85,7 +92,7 @@ const Input = styled.input`
 const CreateButton = styled.button`
   outline: none;
   border: none;
-  padding: 0.5em 0;
+  height: 2.6em;
   border-radius: 4px;
   font-size: 16px;
   font-weight: 500;
@@ -93,6 +100,9 @@ const CreateButton = styled.button`
   letter-spacing: 0em;
   color: #fafafa;
   background-color: #db4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const GoogleButton = styled.button`
@@ -107,7 +117,7 @@ const GoogleButton = styled.button`
   border-radius: 4px;
   background-color: #fafafa;
   border: 1px solid grey;
-  padding: 0.5em 0;
+  height: 2.8em;
   gap: 6px;
 `;
 
@@ -133,8 +143,37 @@ const Span = styled.span`
   cursor: pointer;
 `;
 
+const Error = styled.p`
+  color: #db4444;
+`;
+
+const schema = z.object({
+  username: z.string(),
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+type signupFromData = z.infer<typeof schema>;
+
 const SignUpPage = () => {
+  const dispatch = useAppDispatch();
+  const signupState = useAppSelector((state) => state.signup);
   const navigation = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<signupFromData>({ resolver: zodResolver(schema) });
+
+  useEffect(() => {
+    if (signupState.auth.status == "fulfilled") {
+      console.log(signupState.auth.username);
+      navigation("/login");
+      return;
+    }
+  }, [signupState.auth.status]);
+
   return (
     <HomeWrapper>
       <Header></Header>
@@ -146,18 +185,23 @@ const SignUpPage = () => {
             <Title>Create an account</Title>
             <Subtitle>Enter your details below</Subtitle>
           </TitleWrapper>
-          <InputWrapper>
-            <Input placeholder="Name"></Input>
-            <Input placeholder="Email or Phone Number"></Input>
-            <Input placeholder="Password"></Input>
-          </InputWrapper>
-          <ButtonWrapper>
-            <CreateButton>Create Account</CreateButton>
+          <InputWrapper
+            onSubmit={handleSubmit((data) => dispatch(userSignup(data)))}
+          >
+            <Input {...register("username")} placeholder="User Name"></Input>
+            {errors.username && <Error>{errors.username.message}</Error>}
+            <Input {...register("email")} placeholder="Email"></Input>
+            {errors.email && <Error>{errors.email.message}</Error>}
+            <Input {...register("password")} placeholder="Password"></Input>
+            {errors.password && <Error>{errors.password.message}</Error>}
+            {signupState.auth.error && <Error>{signupState.auth.error}</Error>}
+            <CreateButton type="submit">{signupState.auth.status == "pending" ? <Dots></Dots> : "Create Account"}</CreateButton>
             <GoogleButton>
               <IoLogoGoogle style={{ fontSize: "22px", color: "#4285F4" }} />
               Sign up with Google
             </GoogleButton>
-          </ButtonWrapper>
+          </InputWrapper>
+
           <BottomTitle>
             Already have account ?{" "}
             <Span

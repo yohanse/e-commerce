@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { Title } from "./Title";
 import { TodaySecond } from "./TodaySecond";
-import { TodayMaterial } from "./TodayMaterial";
 import { TodaysButton } from "./TodaysButton";
+import { TodaysFlex } from "./TodaysFlex";
 
 const WrapperTodays = styled.div`
     display: flex;
@@ -10,14 +10,12 @@ const WrapperTodays = styled.div`
     gap: 1em;
 `;
 
-
-
 export const Todays = () => {
   return (
     <WrapperTodays>
         <Title title={"Today`s"}></Title>
         <TodaySecond></TodaySecond>
-        <TodayMaterial></TodayMaterial>
+        <TodaysFlex></TodaysFlex>
         <TodaysButton></TodaysButton>
     </WrapperTodays>
   )

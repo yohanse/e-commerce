@@ -1,33 +1,27 @@
 import { ProductCard } from "./ProductCard";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { getAllProduct } from "../store/features/product-slice";
+import { getTodayProduct } from "../store/features/product-slice";
 import { styled } from "styled-components";
 
-
-
-const Grid = styled.div`
-display: grid;
-grid-template-rows: repeat(2, 1fr);
-grid-auto-flow: column;
-grid-gap: 1em;
-width: 100%;
-overflow: scroll;
+const WrapperHorizontal = styled.div`
+  display: flex;
+  gap: 1em;
+  overflow: scroll;
 `;
 
-
-export const OurProductGrid = () => {
+export const TodaysFlex = () => {
   const dispatch = useAppDispatch();
-  const productState = useAppSelector((state) => state.product.our);
+  const productState = useAppSelector((state) => state.product.today);
   useEffect(() => {
-    dispatch(getAllProduct());
+    dispatch(getTodayProduct());
   }, []);
 
   return (
-    <Grid>
+    <WrapperHorizontal>
       {productState?.products.map((product) => (
         <ProductCard key={product.id} product={product}></ProductCard>
       ))}
-    </Grid>
+    </WrapperHorizontal>
   );
 };

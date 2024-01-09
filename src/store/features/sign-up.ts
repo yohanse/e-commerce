@@ -35,7 +35,7 @@ const initialState: UserState = {
 
 export const userSignup = createAsyncThunk("user/signup", async (postData: PostData) => {
   try {
-    const response = await apiClient.post("/auth/users", postData);
+    const response = await apiClient.post("/auth/users/", postData);
     return response.data;
   } catch (error) {
     // Handle errors here

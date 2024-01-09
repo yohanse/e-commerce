@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Title } from "./Title";
 import { ThisMonthSecond } from "./ThisMonthSecond";
-import { ThisMonthMaterial } from "./ThisMonthMaterial";
+import { ThisMonthFlex } from "./ThisMonthFlex";
 
 const Wrapper = styled.div`
     display: flex;
@@ -14,7 +14,7 @@ export const ThisMonth = () => {
     <Wrapper>
         <Title title="This Month"></Title>
         <ThisMonthSecond></ThisMonthSecond>
-        <ThisMonthMaterial></ThisMonthMaterial>
+        <ThisMonthFlex></ThisMonthFlex>
     </Wrapper>
   )
 }

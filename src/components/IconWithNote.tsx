@@ -4,6 +4,7 @@ import styled from "styled-components";
 interface Props {
   Icon: IconType;
   note: string;
+  onClick: () => void;
 }
 
 const Wrapper = styled.div`
@@ -20,9 +21,10 @@ const Note = styled.p`
   line-height: 21px;
   color: white;
 `;
-const IconWithNote = ({ Icon, note }: Props) => {
+
+const IconWithNote = ({ Icon, note, onClick }: Props) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <Icon size={23} color="white"></Icon>
       <Note>{note}</Note>
     </Wrapper>
