@@ -52,11 +52,11 @@ const InputWrapper = styled.form`
   gap: 0.8em;
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.8em;
-`;
+// const ButtonWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 0.8em;
+// `;
 
 const Title = styled.p`
   font-family: Inter;

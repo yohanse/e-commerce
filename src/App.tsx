@@ -1,4 +1,3 @@
-import HomePage from './components/HomePage'
 import WishListPage from './components/WishListPage'
 
 const App = () => {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AiOutlineHeart, AiOutlineEye, AiFillStar, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineEye, AiFillStar, AiOutlineShoppingCart } from "react-icons/ai";
 
 const Card = styled.div`
   display: flex;
@@ -16,25 +16,25 @@ const ImageCard = styled.div`
   border-radius: 1em;
 `;
 
-const CostCard = styled.p`
-  background-color: #db4444;
-  color: white;
-  border-radius: 3px;
-  padding: 0.2em 0.5em 0.2em 0.5em;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  position: absolute;
-  left: 5%;
-  top: 5%;
-`;
+// const CostCard = styled.p`
+//   background-color: #db4444;
+//   color: white;
+//   border-radius: 3px;
+//   padding: 0.2em 0.5em 0.2em 0.5em;
+//   margin-block-start: 0;
+//   margin-block-end: 0;
+//   position: absolute;
+//   left: 5%;
+//   top: 5%;
+// `;
 
-const CardIcon = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  left: 80%;
-  top: 5%;
-`;
+// const CardIcon = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   position: relative;
+//   left: 80%;
+//   top: 5%;
+// `;
 
 const Name = styled.p`
   margin-block-start: 0;
@@ -107,11 +107,11 @@ const AddCart = styled.button`
   border-radius: 1em;
 `;
 
-interface Props {
-  percent: number;
-  name: String;
-  previousPrice: number;
-}
+// interface Props {
+//   percent: number;
+//   name: String;
+//   previousPrice: number;
+// }
 
 export const WishListJustForYouCard = () => {
   return (

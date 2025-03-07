@@ -21,19 +21,19 @@ const P = styled.p`
 
 const Strong = styled.strong``;
 
-const StoryWrapper = styled.div``;
+// const StoryWrapper = styled.div``;
 
-const Title = styled.p``;
+// const Title = styled.p``;
 
-const Subtitle = styled.p``;
+// const Subtitle = styled.p``;
 
-const ImageStory = styled.div``;
+// const ImageStory = styled.div``;
 
-const NoteStoryWrapper = styled.div``;
+// const NoteStoryWrapper = styled.div``;
 
-const MiddleWrapper = styled.div``;
+// const MiddleWrapper = styled.div``;
 
-const PersonWrapper = styled.div``;
+// const PersonWrapper = styled.div``;
 
 const AboutPage = () => {
   return (

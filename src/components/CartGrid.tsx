@@ -32,7 +32,7 @@ const Icon = styled.div`
 
 const P = styled.div``;
 
-const RangeInput = styled.input``;
+// const RangeInput = styled.input``;
 
 export const CartGrid = () => {
   const dispatch = useAppDispatch();
